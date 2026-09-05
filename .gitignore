@@ -1,0 +1,33 @@
+# Сборочные файлы, бинарники и кэш
+[Bb]in/
+[Oo]bj/
+/[Ll]og/
+/[Ll]ogs/
+/[Tt]est[Rr]esults/
+/[Bb]uild/
+/[Bb]uilds/
+
+# Пользовательские настройки Visual Studio
+.vs/
+*.user
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+
+# Настройки Rider и ReSharper
+.idea/
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Публикации и пакеты
+/[Nn]upkg/
+/[Pp]ackages/
+project.lock.json
+*.nupkg
+
+# Результаты покрытия кода
+*.pidb.lock
+*.coverage
+*.coveragexml
