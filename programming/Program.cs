@@ -131,6 +131,49 @@ namespace Labs
 //         }
 //     }
 // }
+       class Lab3
+    {   
+
+        static List<long> PrimeFactors(int x)
+        {   
+            List<long> result = new List<long>();
+            if (x < 1) return result;
+            result.Add(1);
+            
+            Queue<long> q3 = new Queue<long>();
+            Queue<long> q5 = new Queue<long>();
+            Queue<long> q7 = new Queue<long>();
+
+            q3.Enqueue(3);
+            q5.Enqueue(5);
+            q7.Enqueue(7);
+
+            while (true)
+            {
+                long currentMin = Math.Min(q3.Peek(), Math.Min(q5.Peek(), q7.Peek()));
+                if (currentMin > x) break;
+
+                result.Add(currentMin);
+
+                if(currentMin == q3.Peek()) q3.Dequeue();
+                if(currentMin == q5.Peek()) q5.Dequeue();
+                if(currentMin == q7.Peek()) q7.Dequeue();
+
+                q3.Enqueue(3 * currentMin);
+                q5.Enqueue(5 * currentMin);
+                q7.Enqueue(7 * currentMin);
+            }
+            return result;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите x:");
+            int x = Convert.ToInt32((Console.ReadLine()));
+            List<long> result = new List<long>();
+            result = PrimeFactors(x);
+            foreach (long i in result) Console.Write($"{i} ");
+        }
+    }
 
     // class Lab4
     // {   
