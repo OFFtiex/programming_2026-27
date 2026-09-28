@@ -131,49 +131,49 @@ namespace Labs
 //         }
 //     }
 // }
-       class Lab3
-    {   
+    //    class Lab3
+    // {   
 
-        static List<long> PrimeFactors(int x)
-        {   
-            List<long> result = new List<long>();
-            if (x < 1) return result;
-            result.Add(1);
+    //     static List<long> PrimeFactors(int x)
+    //     {   
+    //         List<long> result = new List<long>();
+    //         if (x < 1) return result;
+    //         result.Add(1);
             
-            Queue<long> q3 = new Queue<long>();
-            Queue<long> q5 = new Queue<long>();
-            Queue<long> q7 = new Queue<long>();
+    //         Queue<long> q3 = new Queue<long>();
+    //         Queue<long> q5 = new Queue<long>();
+    //         Queue<long> q7 = new Queue<long>();
 
-            q3.Enqueue(3);
-            q5.Enqueue(5);
-            q7.Enqueue(7);
+    //         q3.Enqueue(3);
+    //         q5.Enqueue(5);
+    //         q7.Enqueue(7);
 
-            while (true)
-            {
-                long currentMin = Math.Min(q3.Peek(), Math.Min(q5.Peek(), q7.Peek()));
-                if (currentMin > x) break;
+    //         while (true)
+    //         {
+    //             long currentMin = Math.Min(q3.Peek(), Math.Min(q5.Peek(), q7.Peek()));
+    //             if (currentMin > x) break;
 
-                result.Add(currentMin);
+    //             result.Add(currentMin);
 
-                if(currentMin == q3.Peek()) q3.Dequeue();
-                if(currentMin == q5.Peek()) q5.Dequeue();
-                if(currentMin == q7.Peek()) q7.Dequeue();
+    //             if(currentMin == q3.Peek()) q3.Dequeue();
+    //             if(currentMin == q5.Peek()) q5.Dequeue();
+    //             if(currentMin == q7.Peek()) q7.Dequeue();
 
-                q3.Enqueue(3 * currentMin);
-                q5.Enqueue(5 * currentMin);
-                q7.Enqueue(7 * currentMin);
-            }
-            return result;
-        }
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Введите x:");
-            int x = Convert.ToInt32((Console.ReadLine()));
-            List<long> result = new List<long>();
-            result = PrimeFactors(x);
-            foreach (long i in result) Console.Write($"{i} ");
-        }
-    }
+    //             q3.Enqueue(3 * currentMin);
+    //             q5.Enqueue(5 * currentMin);
+    //             q7.Enqueue(7 * currentMin);
+    //         }
+    //         return result;
+    //     }
+    //     static void Main(string[] args)
+    //     {
+    //         Console.WriteLine("Введите x:");
+    //         int x = Convert.ToInt32((Console.ReadLine()));
+    //         List<long> result = new List<long>();
+    //         result = PrimeFactors(x);
+    //         foreach (long i in result) Console.Write($"{i} ");
+    //     }
+    // }
 
     // class Lab4
     // {   
@@ -236,4 +236,37 @@ namespace Labs
     //         Console.WriteLine(InsertionSort(numbers));
     //     }
     // }
+    class Lab6
+    {   
+        static int[] SelectionSort(int[] numberArray)
+        {
+            for (int i = 0; i < numberArray.Length - 1; i++)
+            {
+                int minIndex = i;
+                for (int j = i + 1; j < numberArray.Length; j++)
+                {
+                    if (numberArray[j] < numberArray[minIndex]) minIndex = j;
+                }
+                int tmp = numberArray[i];
+                numberArray[i] = numberArray[minIndex];
+                numberArray[minIndex] = tmp; 
+            }
+            return numberArray;
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите последовательность чисел через пробел:");
+            string input = Console.ReadLine();
+            if (input == null) return;
+            string[] stringArray = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            int[] numbers = new int[stringArray.Length];
+            for (int i = 0; i < stringArray.Length; i++) numbers[i] = int.Parse(stringArray[i]);
+            int[] sortedNumbers = SelectionSort(numbers);
+            for (int i = 0; i < sortedNumbers.Length; i++)
+            {
+                Console.Write(sortedNumbers[i] + " ");
+            }
+        }
+    }
 }
