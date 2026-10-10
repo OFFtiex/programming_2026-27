@@ -236,25 +236,63 @@ namespace Labs
     //         Console.WriteLine(InsertionSort(numbers));
     //     }
     // }
-    class Lab6
+    // class Lab6
+    // {   
+    //     static int[] SelectionSort(int[] numberArray)
+    //     {
+    //         for (int i = 0; i < numberArray.Length - 1; i++)
+    //         {
+    //             int minIndex = i;
+    //             for (int j = i + 1; j < numberArray.Length; j++)
+    //             {
+    //                 if (numberArray[j] < numberArray[minIndex]) minIndex = j;
+    //             }
+    //             int tmp = numberArray[i];
+    //             numberArray[i] = numberArray[minIndex];
+    //             numberArray[minIndex] = tmp; 
+    //         }
+    //         return numberArray;
+    //     }
+
+    //     static void Main(string[] args)
+    //     {
+    //         Console.WriteLine("Введите последовательность чисел через пробел:");
+    //         string input = Console.ReadLine();
+    //         if (input == null) return;
+    //         string[] stringArray = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    //         int[] numbers = new int[stringArray.Length];
+    //         for (int i = 0; i < stringArray.Length; i++) numbers[i] = int.Parse(stringArray[i]);
+    //         int[] sortedNumbers = SelectionSort(numbers);
+    //         for (int i = 0; i < sortedNumbers.Length; i++)
+    //         {
+    //             Console.Write(sortedNumbers[i] + " ");
+    //         }
+    //     }
+    // }
+    class Lab7
     {   
-        static int[] SelectionSort(int[] numberArray)
+        static int[] ShellSort(int[] numberArray)
         {
-            for (int i = 0; i < numberArray.Length - 1; i++)
+            int n = numberArray.Length;
+            int gap = n / 2;
+            while (gap > 0)
             {
-                int minIndex = i;
-                for (int j = i + 1; j < numberArray.Length; j++)
+                for (int i = gap; i < n; i++)
                 {
-                    if (numberArray[j] < numberArray[minIndex]) minIndex = j;
+                    int key = numberArray[i];
+                    int j = i;
+                    while ((j >= gap) && (numberArray[j - gap] > key))
+                    {
+                        numberArray[j] = numberArray[j - gap];
+                        j -= gap;
+                    }
+                    numberArray[j] = key;
                 }
-                int tmp = numberArray[i];
-                numberArray[i] = numberArray[minIndex];
-                numberArray[minIndex] = tmp; 
+                gap /= 2;
             }
             return numberArray;
         }
-
-        static void Main(string[] args)
+        static void Main(String[] args)
         {
             Console.WriteLine("Введите последовательность чисел через пробел:");
             string input = Console.ReadLine();
@@ -262,7 +300,7 @@ namespace Labs
             string[] stringArray = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             int[] numbers = new int[stringArray.Length];
             for (int i = 0; i < stringArray.Length; i++) numbers[i] = int.Parse(stringArray[i]);
-            int[] sortedNumbers = SelectionSort(numbers);
+            int[] sortedNumbers = ShellSort(numbers);
             for (int i = 0; i < sortedNumbers.Length; i++)
             {
                 Console.Write(sortedNumbers[i] + " ");
