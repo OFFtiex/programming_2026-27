@@ -269,28 +269,65 @@ namespace Labs
     //         }
     //     }
     // }
-    class Lab7
-    {   
-        static int[] ShellSort(int[] numberArray)
+    // class Lab7
+    // {   
+    //     static int[] ShellSort(int[] numberArray)
+    //     {
+    //         int n = numberArray.Length;
+    //         int gap = n / 2;
+    //         while (gap > 0)
+    //         {
+    //             for (int i = gap; i < n; i++)
+    //             {
+    //                 int key = numberArray[i];
+    //                 int j = i;
+    //                 while ((j >= gap) && (numberArray[j - gap] > key))
+    //                 {
+    //                     numberArray[j] = numberArray[j - gap];
+    //                     j -= gap;
+    //                 }
+    //                 numberArray[j] = key;
+    //             }
+    //             gap /= 2;
+    //         }
+    //         return numberArray;
+    //     }
+    //     static void Main(String[] args)
+    //     {
+    //         Console.WriteLine("Введите последовательность чисел через пробел:");
+    //         string input = Console.ReadLine();
+    //         if (input == null) return;
+    //         string[] stringArray = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    //         int[] numbers = new int[stringArray.Length];
+    //         for (int i = 0; i < stringArray.Length; i++) numbers[i] = int.Parse(stringArray[i]);
+    //         int[] sortedNumbers = ShellSort(numbers);
+    //         for (int i = 0; i < sortedNumbers.Length; i++)
+    //         {
+    //             Console.Write(sortedNumbers[i] + " ");
+    //         }
+    //     }
+    // }
+    class Lab11
+    {
+        static int[] QuickSort(int[] numberArray)
         {
-            int n = numberArray.Length;
-            int gap = n / 2;
-            while (gap > 0)
+            if (numberArray.Length < 2) return numberArray;
+            else
             {
-                for (int i = gap; i < n; i++)
+                int pivot = numberArray[0];
+                List<int> lessNumbers = new List<int>();
+                List<int> greaterNumbers = new List<int>();
+                for (int i = 1; i < numberArray.Length; i++)
                 {
-                    int key = numberArray[i];
-                    int j = i;
-                    while ((j >= gap) && (numberArray[j - gap] > key))
-                    {
-                        numberArray[j] = numberArray[j - gap];
-                        j -= gap;
-                    }
-                    numberArray[j] = key;
+                    if (numberArray[i] <= pivot) lessNumbers.Add(numberArray[i]);
+                    else greaterNumbers.Add(numberArray[i]);
                 }
-                gap /= 2;
+                List<int> result = new List<int>();
+                result.AddRange(QuickSort(lessNumbers.ToArray()));
+                result.Add(pivot);
+                result.AddRange(QuickSort(greaterNumbers.ToArray()));
+                return result.ToArray();
             }
-            return numberArray;
         }
         static void Main(String[] args)
         {
@@ -300,7 +337,7 @@ namespace Labs
             string[] stringArray = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             int[] numbers = new int[stringArray.Length];
             for (int i = 0; i < stringArray.Length; i++) numbers[i] = int.Parse(stringArray[i]);
-            int[] sortedNumbers = ShellSort(numbers);
+            int[] sortedNumbers = QuickSort(numbers);
             for (int i = 0; i < sortedNumbers.Length; i++)
             {
                 Console.Write(sortedNumbers[i] + " ");
